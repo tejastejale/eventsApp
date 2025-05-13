@@ -1,8 +1,9 @@
-import {View, Text, ImageBackground} from 'react-native';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import tw from 'twrnc';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
+import LocalNotification from '../../../Notification';
 
 const EventsList = () => {
   const [events, setEvents] = useState([]);
@@ -35,9 +36,12 @@ const EventsList = () => {
 
   return (
     <View style={tw`h-full bg-white p-4 gap-3`}>
+      <TouchableOpacity onPress={() => LocalNotification()}>
+        <Text>asd</Text>
+      </TouchableOpacity>
       {events?.length > 0 &&
-        events.map(item => (
-          <View style={tw`rounded-xl overflow-hidden elevation-4`}>
+        events.map((item, index) => (
+          <View key={index} style={tw`rounded-xl overflow-hidden elevation-4`}>
             <ImageBackground
               source={{
                 uri: item.mainImage.uri,

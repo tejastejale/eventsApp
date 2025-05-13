@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1095215284168",
+    "project_id": "insta-events-508be",
+    "storage_bucket": "insta-events-508be.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095215284168:android:05e823fadb882ad1a7cafd",
+        "android_client_info": {
+          "package_name": "com.eventsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiBuvZjXDCZI4QbsZGQQ1ZNQdSMHOoXDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
