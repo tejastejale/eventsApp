@@ -10,7 +10,6 @@ const checkApplicationPermission = async () => {
       const res = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
       );
-      console.log(res, 'Res');
     } catch (error) {
       console.error(error);
     }
@@ -54,9 +53,9 @@ const RemoteNotification = () => {
 
     PushNotification.configure({
       // Called when a token is generated
-      onRegister: function (token) {
-        console.log('TOKEN:', token);
-      },
+      // onRegister: function (token) {
+      //   console.log('TOKEN:', token);
+      // },
 
       // Called when a notification is received or opened
       onNotification: function (notification) {

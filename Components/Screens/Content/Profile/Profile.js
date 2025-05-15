@@ -6,6 +6,7 @@ import RNQRGenerator from 'rn-qr-generator';
 import base64 from 'react-native-base64';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Camera, CameraType} from 'react-native-camera-kit';
+import {useTranslation} from 'react-i18next';
 
 const Profile = () => {
   const [userData, setUserDate] = useState({
@@ -18,6 +19,8 @@ const Profile = () => {
   const [image, setImage] = useState(null);
   const [scan, setScan] = useState(false);
   const cameraRef = useRef();
+  const {t} = useTranslation();
+
   useEffect(() => {
     createQR();
   }, []);
@@ -104,7 +107,7 @@ const Profile = () => {
               onPress={() => setShowQR(!showQR)}
               style={tw`bg-purple-600 p-3 rounded-lg`}>
               <Text style={tw`text-lg text-white font-semibold text-center`}>
-                {showQR ? 'Hide' : 'Show'} QR
+                {showQR ? t('hide_qr') : t('show_qr')}
               </Text>
             </TouchableOpacity>
           )}

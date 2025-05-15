@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import DatePicker from './Component/DatePicker';
 import {TimePicker} from './Component/TimePicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useTranslation} from 'react-i18next';
 
 const EventCreation = () => {
   const [dateTimePicker, setDateTimePicker] = useState({
@@ -33,6 +34,7 @@ const EventCreation = () => {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const {t} = useTranslation();
 
   useEffect(() => {
     requestStoragePermission();
@@ -126,11 +128,11 @@ const EventCreation = () => {
   return (
     <View style={tw`w-full p-8`}>
       <View
-        style={tw`w-full h-fit justify-center p-6 gap-3 bg-purple-100 rounded-xl elevation-4`}>
+        style={tw`w-full justify-center p-6 gap-3 bg-purple-100 rounded-xl elevation-4`}>
         {/* Inputs */}
         <TextInput
           style={tw`bg-white rounded-lg w-full p-3`}
-          placeholder="Event Name"
+          placeholder={t('event_name')}
           value={formData.eventName}
           onChangeText={text =>
             setFormData(prev => ({...prev, eventName: text}))
@@ -138,7 +140,7 @@ const EventCreation = () => {
         />
         <TextInput
           style={tw`bg-white rounded-lg w-full p-3`}
-          placeholder="Organizer Name"
+          placeholder={t('organizer_name')}
           value={formData.organizer}
           onChangeText={text =>
             setFormData(prev => ({...prev, organizer: text}))
@@ -155,7 +157,7 @@ const EventCreation = () => {
             }
             style={tw`bg-white rounded-lg flex-1 p-3`}>
             <Text style={tw`text-gray-400`}>
-              {formData.date || 'Select Date'}
+              {formData.date || t('select_date')}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -169,14 +171,14 @@ const EventCreation = () => {
             <Text style={tw`text-gray-400`}>
               {Object.keys(formData.time).length > 0
                 ? formatTimeTo12Hour(formData.time)
-                : 'Select Time'}
+                : t('select_time')}
             </Text>
           </TouchableOpacity>
         </View>
 
         <TextInput
           style={tw`bg-white rounded-lg w-full p-3`}
-          placeholder="Total Attendees"
+          placeholder={t('total_attendees')}
           keyboardType="decimal-pad"
           value={formData.attendees}
           onChangeText={text =>
@@ -186,7 +188,6 @@ const EventCreation = () => {
 
         {/* Image Pickers */}
         <ScrollView>
-          {/* <Text style={tw`text-lg font-bold mb-2`}>Main Image</Text> */}
           <TouchableOpacity
             onPress={selectMainImage}
             style={tw`bg-purple-100 p-4 rounded-lg justify-center mb-4 border border-dashed border-white`}>
@@ -204,16 +205,17 @@ const EventCreation = () => {
               </View>
             ) : (
               <Text style={tw`text-gray-500 text-center`}>
-                Tap to add main image
+                {t('tap_add_main_image')}
               </Text>
             )}
           </TouchableOpacity>
 
-          {/* <Text style={tw`text-lg font-bold mb-2`/}>Event Images</Text> */}
           <TouchableOpacity
             onPress={selectEventImages}
             style={tw`bg-purple-100 p-4 rounded-lg items-center justify-center mb-4 border border-dashed border-white`}>
-            <Text style={tw`text-gray-500`}>Tap to select event images</Text>
+            <Text style={tw`text-gray-500`}>
+              {t('tap_select_event_images')}
+            </Text>
           </TouchableOpacity>
 
           <ScrollView horizontal style={tw`flex-row gap-2`}>
@@ -257,7 +259,7 @@ const EventCreation = () => {
         } my-4 p-3 rounded-xl`}>
         <Text
           style={tw`text-center text-lg font-semibold text-white tracking-wider`}>
-          Create
+          {t('create')}
         </Text>
       </TouchableOpacity>
     </View>

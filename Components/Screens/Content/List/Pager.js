@@ -3,20 +3,22 @@ import {Text, useWindowDimensions, TouchableOpacity, View} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import EventsList from './EventsList';
 import tw from 'twrnc';
+import {useTranslation} from 'react-i18next';
 
 const renderScene = SceneMap({
   upcoming: EventsList,
   registred: EventsList,
 });
 
-const routes = [
-  {key: 'upcoming', title: 'Upcoming'},
-  {key: 'registred', title: 'Registred'},
-];
-
 export default function Pager() {
+  const {t} = useTranslation();
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
+
+  let routes = [
+    {key: 'upcoming', title: t('upcoming')},
+    {key: 'registred', title: t('registered')},
+  ];
 
   const renderCustomTabBar = props => (
     <TabBar
