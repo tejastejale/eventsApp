@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   Animated,
   Keyboard,
+  SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -68,47 +69,49 @@ export default function Bottom() {
   };
 
   return (
-    <CurvedBottomBar.Navigator
-      ref={ref}
-      type="DOWN"
-      screenOptions={{headerShown: false}}
-      style={styles.bottomBar}
-      shadowStyle={styles.shawdow}
-      height={55}
-      circleWidth={50}
-      bgColor="#f3e8ff"
-      initialRouteName="EventList"
-      renderCircle={({selectedTab, navigate}) => (
-        <Animated.View style={styles.btnCircleUp}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigate('NewEvent')} // navigate to center screen
-          >
-            <Ionicons
-              name={'add'}
-              color={selectedTab === 'NewEvent' ? '#7c3aed' : 'gray'}
-              size={25}
-            />
-          </TouchableOpacity>
-        </Animated.View>
-      )}
-      tabBar={renderTabBar}>
-      <CurvedBottomBar.Screen
-        name="EventList"
-        position="LEFT"
-        component={Pager}
-      />
-      <CurvedBottomBar.Screen
-        name="NewEvent"
-        position="CENTER"
-        component={EventCreation}
-      />
-      <CurvedBottomBar.Screen
-        name="Profile"
-        position="RIGHT"
-        component={Profile}
-      />
-    </CurvedBottomBar.Navigator>
+    <SafeAreaView style={{flex: 1}}>
+      <CurvedBottomBar.Navigator
+        ref={ref}
+        type="DOWN"
+        screenOptions={{headerShown: false}}
+        style={styles.bottomBar}
+        shadowStyle={styles.shawdow}
+        height={55}
+        circleWidth={50}
+        bgColor="#f3e8ff"
+        initialRouteName="EventList"
+        renderCircle={({selectedTab, navigate}) => (
+          <Animated.View style={styles.btnCircleUp}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigate('NewEvent')} // navigate to center screen
+            >
+              <Ionicons
+                name={'add'}
+                color={selectedTab === 'NewEvent' ? '#7c3aed' : 'gray'}
+                size={25}
+              />
+            </TouchableOpacity>
+          </Animated.View>
+        )}
+        tabBar={renderTabBar}>
+        <CurvedBottomBar.Screen
+          name="EventList"
+          position="LEFT"
+          component={Pager}
+        />
+        <CurvedBottomBar.Screen
+          name="NewEvent"
+          position="CENTER"
+          component={EventCreation}
+        />
+        <CurvedBottomBar.Screen
+          name="Profile"
+          position="RIGHT"
+          component={Profile}
+        />
+      </CurvedBottomBar.Navigator>
+    </SafeAreaView>
   );
 }
 
